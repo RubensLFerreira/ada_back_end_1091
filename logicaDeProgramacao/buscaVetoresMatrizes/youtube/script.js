@@ -63,8 +63,12 @@ const data = [
 
 // console.log(users); // todos os valores precisam ser true para retorna true
 
-const allSalary = data.reduce((all, item) => {
-  return all += item.salary;
-}, 0);
+// const allSalary = data.reduce((all, item) => {
+//   return all += item.salary;
+// }, 0);
 
-console.log(allSalary);
+// console.log(allSalary);
+const arr = ['rubens', 'Lima', 'Ferreira'];
+const newArr = arr.join('_');
+
+console.log(newArr);

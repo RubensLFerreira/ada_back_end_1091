@@ -4,10 +4,28 @@
 // const feedbacks = ["Ruim", "Pessimo", "Regular", "Bom", "Otimo"];
 // O chatbot deve então receber o feedback digitado pelo usuário e retornar se esse valor é válido ou não. Caso o usuário digite “Péssimo” ou “Ótimo” deve valer por “Pessimo” e “Otimo” respectivamente.
 
-// Para resolver esse problema, crie uma função chamada verificarFeedbackValidoque deve:
+// Para resolver esse problema, crie uma função chamada verificarFeedbackValido que deve:
 // - Receber uma string.
 // - Retornar um valor booleano caso esse feedback (string) seja um valor válido.
 // - Utilize a função includes() no seu desenvolvimento.
 
-// const response = prompt("Qual seu feedback?");
-// console.log(response);
+const feedbacks = ["ruim", "pessimo", "regular", "bom", "otimo"];
+
+// const response = prompt('Qual o seu feedback? ');
+
+function verificarFeedbackValido(response) {
+  const format = response.toLowerCase(); // deixa tudo minusculo
+
+  if (format === "péssimo" || format === "pessimo") {
+    const verify = feedbacks.includes("pessimo");
+    return verify;
+  } else if (format === "ótimo" || format === "otimo") {
+    const verify = feedbacks.includes("otimo");
+    return verify;
+  } else {
+    const verify = feedbacks.includes(format);
+    return verify;
+  }
+}
+
+console.log(verificarFeedbackValido(response));
