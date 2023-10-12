@@ -14,3 +14,6 @@ function allValue(arr) {
 const arr = [3, 6, 5, 1, 8, 3];
 
 allValue(arr);
+
+const maxValue = Math.max(...arr);
+console.log(maxValue);
