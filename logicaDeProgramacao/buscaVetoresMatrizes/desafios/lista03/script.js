@@ -24,15 +24,13 @@ const usuarios = [
 ];
 
 function montarNomesCompletos(usuarios) {
-  for (i in usuarios) {
-    usuarios[i].name =
+  for (let i in usuarios) {
+    usuarios[i]["nome "] =
       usuarios[i].primeiroNome +
       " " +
       usuarios[i].segundoNome +
       " " +
       usuarios[i].terceiroNome;
-
-    usuarios[i].age = usuarios[i].age;
 
     delete usuarios[i].primeiroNome;
     delete usuarios[i].segundoNome;
