@@ -17,15 +17,22 @@ function addTask(task) {
   }
 }
 
-function editTask() {
-  return;
+function editTask(idTask, newTask) {
+  if (typeof taskNumber !== "number" || isNaN(taskNumber)) {
+    const indexTask = tasks.findIndex((item) => item.id === parseInt(idTask));
+    tasks[indexTask].task = newTask;
+    console.log(tasks);
+  } else {
+    console.log("Não foi possível editar a task!");
+  }
 }
 
 function removeTask(task) {
-  if (typeof valor !== "number" || isNaN(task)) {
+  const taskNumber = parseInt(task);
+  if (typeof taskNumber !== "number" || isNaN(taskNumber)) {
     console.log("\nPor favor digite um ID válido!");
   } else {
-    const indiceTask = tasks.findIndex((item) => item.id === task);
+    const indiceTask = tasks.findIndex((item) => item.id === taskNumber);
     tasks.splice(indiceTask, 1);
     console.log(tasks);
   }
@@ -40,10 +47,11 @@ function listTask() {
 }
 
 function viewTask(task) {
-  if (typeof valor !== "number" || isNaN(task)) {
+  const taskNumber = parseInt(task);
+  if (typeof taskNumber !== "number" || isNaN(task)) {
     console.log("\nPor favor digite um ID válido!");
   } else {
-    const visualation = tasks.find((item) => item.id === parseInt(task));
+    const visualation = tasks.find((item) => item.id === taskNumber);
     console.log(visualation, "\n");
   }
 }
@@ -68,7 +76,12 @@ function interation() {
           interation();
         });
       } else if (answer === "2") {
-        console.log("\nDigite o ID da tarefas para editar: ");
+        rl.question("\nDigite o ID da tarefas para editar: ", (idTask) => {
+          rl.question("\nDigite a nova tarefa: ", (newTask) => {
+            editTask(idTask, newTask);
+            interation();
+          });
+        });
       } else if (answer === "3") {
         rl.question("\nDigite o ID da tarefa que deseja remover: ", (task) => {
           removeTask(task);
