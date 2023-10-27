@@ -5,10 +5,11 @@ const { stdin: input, stdout: output } = require("node:process");
 const rl = readline.createInterface({ input, output });
 
 const tasks = [];
+let id = 0;
 
 // Adicionar tarefa
 function addTask(task) {
-  let id = 0;
+
   if (task) {
     id += 1;
     tasks.push({ id, task });
