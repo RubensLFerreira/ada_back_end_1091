@@ -5,36 +5,42 @@ const { stdin: input, stdout: output } = require("node:process");
 const rl = readline.createInterface({ input, output });
 
 const tasks = [];
-let id = 0;
 
 function addTask(task) {
-  if (!task) {
-    console.log("\nPor favor digite um ID válido!");
-  } else {
+  let id = 0;
+  if (task) {
     id += 1;
     tasks.push({ id, task });
     console.log(`\nA tarefa "${task}" foi adicionada!\n`);
+  } else {
+    console.log("\nPor favor digite um ID válido!");
   }
 }
 
 function editTask(idTask, newTask) {
-  if (typeof taskNumber !== "number" || isNaN(taskNumber)) {
-    const indexTask = tasks.findIndex((item) => item.id === parseInt(idTask));
-    tasks[indexTask].task = newTask;
-    console.log(tasks);
-  } else {
-    console.log("Não foi possível editar a task!");
+  try {
+    const taskNumber = Number(idTask);
+
+    if (!isNaN(taskNumber)) {
+      const indexTask = tasks.findIndex((item) => item.id === taskNumber);
+      tasks[indexTask].task = newTask;
+      console.log(tasks);
+    } else {
+      console.log("\nErro! Digite um ID válido!\n");
+    }
+  } catch (error) {
+    console.error({ message: error });
   }
 }
 
 function removeTask(task) {
-  const taskNumber = parseInt(task);
-  if (typeof taskNumber !== "number" || isNaN(taskNumber)) {
-    console.log("\nPor favor digite um ID válido!");
-  } else {
+  const taskNumber = Number(task);
+  if (!isNaN(taskNumber)) {
     const indiceTask = tasks.findIndex((item) => item.id === taskNumber);
     tasks.splice(indiceTask, 1);
     console.log(tasks);
+  } else {
+    console.log("\nPor favor digite um ID válido!");
   }
 }
 
@@ -47,12 +53,12 @@ function listTask() {
 }
 
 function viewTask(task) {
-  const taskNumber = parseInt(task);
-  if (typeof taskNumber !== "number" || isNaN(task)) {
-    console.log("\nPor favor digite um ID válido!");
-  } else {
+  const taskNumber = Number(task);
+  if (!isNaN(taskNumber)) {
     const visualation = tasks.find((item) => item.id === taskNumber);
     console.log(visualation, "\n");
+  } else {
+    console.log("\nPor favor digite um ID válido!");
   }
 }
 
