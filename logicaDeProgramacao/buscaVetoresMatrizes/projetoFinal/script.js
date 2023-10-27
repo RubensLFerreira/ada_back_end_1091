@@ -6,6 +6,7 @@ const rl = readline.createInterface({ input, output });
 
 const tasks = [];
 
+// Adicionar tarefa
 function addTask(task) {
   let id = 0;
   if (task) {
@@ -17,6 +18,7 @@ function addTask(task) {
   }
 }
 
+// Editar tarefa
 function editTask(idTask, newTask) {
   try {
     const taskNumber = Number(idTask);
@@ -33,6 +35,7 @@ function editTask(idTask, newTask) {
   }
 }
 
+// Remover tarefa
 function removeTask(task) {
   const taskNumber = Number(task);
   if (!isNaN(taskNumber)) {
@@ -44,6 +47,7 @@ function removeTask(task) {
   }
 }
 
+// Listar todas as tarefas
 function listTask() {
   console.log(`Lista de tarefas: `);
   for (let key in tasks) {
@@ -52,6 +56,7 @@ function listTask() {
   console.log(`\n`);
 }
 
+// Listar apenas uma tarefa por ID
 function viewTask(task) {
   const taskNumber = Number(task);
   if (!isNaN(taskNumber)) {
@@ -62,6 +67,7 @@ function viewTask(task) {
   }
 }
 
+// Encerrar o programa
 function close() {
   return rl.close();
 }
@@ -77,11 +83,13 @@ function interation() {
     6 - Encerrar\n`,
     (answer) => {
       if (answer === "1") {
+        // Adiciona tarefa
         rl.question("\nAdicione uma nova tarefa: ", (task) => {
           addTask(task);
           interation();
         });
       } else if (answer === "2") {
+        // Edita tarefa
         rl.question("\nDigite o ID da tarefas para editar: ", (idTask) => {
           rl.question("\nDigite a nova tarefa: ", (newTask) => {
             editTask(idTask, newTask);
@@ -89,19 +97,23 @@ function interation() {
           });
         });
       } else if (answer === "3") {
+        // Remove tarefa
         rl.question("\nDigite o ID da tarefa que deseja remover: ", (task) => {
           removeTask(task);
           interation();
         });
       } else if (answer === "4") {
+        // Lista todas as tarefas
         listTask();
         interation();
       } else if (answer === "5") {
+        // Lista apenas uma tarefa por ID
         rl.question("\nDigite o ID da tarefas para visualizar: ", (task) => {
           viewTask(task);
           interation();
         });
       } else if (answer === "6") {
+        // Enerra o programa
         console.log("Encerrando o programa!");
         close();
       }
